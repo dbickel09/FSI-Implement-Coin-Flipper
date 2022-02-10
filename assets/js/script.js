@@ -14,9 +14,39 @@ document.addEventListener('DOMContentLoaded', function () {
     function(e){
         if (Math.random() > 0.5) {
             console.log('heads')
-            
+            //update image
+            let pennyFace = document.querySelector('#pennyFace')
+            pennyFace.src = 'assets/images/penny-heads.jpg'
+            pennyFace.alt = '2005 Penny, head side'
+
+            //log outcome
+            document.querySelector('#message').textContent ='You Flipped Heads!'
+            //update JS global vars
+            headCount++
+
+            //update Dom table
+            document.querySelector('#heads').textContent =headCount
+            // #/total
+            document.querySelector('#heads-percent').textContent = Math.round(headCount/(headCount+tailCount)*100) + '%'
+            document.querySelector('#tails-percent').textContent = Math.round(tailCount/(headCount+tailCount)*100) + '%'
+            //update tails percentage 
+
         } else {
             console.log('tails')
+
+            let pennyTail = document.querySelector('#pennyTail')
+            pennyFace.src = 'assets/images/penny-tails.jpg'
+            pennyFace.alt = '2005 Penny, tail side'
+
+            document.querySelector('#message').textContent ='You Flipped Tails!'
+
+            tailCount++
+
+            document.querySelector('#tails').textContent =tailCount
+
+            document.querySelector('#heads-percent').textContent = Math.round(headCount/(headCount+tailCount)*100) + '%'
+            document.querySelector('#tails-percent').textContent = Math.round(tailCount/(headCount+tailCount)*100) + '%'
+
         }
         let randomNum = Math.random()
                                                                 //console.log(Math.ceil(Math.random() * 100))
@@ -32,8 +62,19 @@ document.addEventListener('DOMContentLoaded', function () {
             // TODO: Update the display of each table cell
     }) 
             
-    document.querySelector('#clear').addEventListener('click',
-    function(e) {
+    document.querySelector('#clear').addEventListener('click', function(e) {
+        headCount = 0
+        tailsCount = 0
+        document.querySelector('#message') = "Let's Get Rolling"
+        document.querySelector('#heads').textContent = 0
+        document.querySelector('#tails').textContent = 0
+        document.querySelector('#heads-percent').textContent = '0%'
+        document.querySelector('#tails-percent').textContent = '0%'
+        document.querySelector('#pennyFace').src = 'assets/images/penny-heads.jpg'
+        document.querySelector('#pennyFace').alt = '2005 penny, heads side'
+
+
+
                                                                 //console.log(Math.random())
             
         // Clear Button Click Handler
